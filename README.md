@@ -27,21 +27,27 @@ A simple full-stack-ready REST API built with ASP.NET Core and MySQL for managin
    ```bash
    git clone https://github.com/your-username/equipment-inventory-tracker.git
    cd equipment-inventory-tracker
+   
 2.Set up your database connection in appsettings.json
 Open the appsettings.json file and update the connection string to match your local MySQL instance:
+```
 "ConnectionStrings": {
   "DefaultConnection": "server=localhost;database=equipment_db;user=root;password=yourpassword"
 }
+```
+
 3.Run database migrations (optional)
 If you haven't already created the database tables via EF Core, run:
+```
 dotnet ef migrations add InitialCreate
 dotnet ef database update
-
+```
 4. Run the project
 Start the ASP.NET Core API:
+```
 dotnet run
-
-5. Test the API via Swagger UI
+```
+6. Test the API via Swagger UI
 Once running, open your browser and go to:
 https://localhost:[yourport]/swagger
 
