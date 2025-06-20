@@ -60,14 +60,22 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
-app.Run();
+
 
 //db seeding
 // Ensure the database is created and seeded with initial data
-using (var scope = app.Services.CreateScope())
+if (app.Environment.IsDevelopment())
 {
-    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    DbSeeder.Seed(db);
+    using (var scope = app.Services.CreateScope())
+    {
+        var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+        DbSeeder.Seed(context);
+    }
 }
+
+
+app.Run();
+
+
 
 //If pulled from remote repository, create a new appsettings.json file in the root directory
