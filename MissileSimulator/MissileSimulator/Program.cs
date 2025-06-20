@@ -13,7 +13,7 @@ namespace MissileSimulator
             Console.WriteLine("🚀 Missile simulator started...");
 
             var httpClient = new HttpClient();
-            int missileId = 1; // Update this ID if needed
+            int missileId = 11; // Update this ID if needed
             string apiUrl = $"https://localhost:5001/api/equipment/{missileId}/location"; // Update base URL if needed
 
             double centerLat = 27.994402;

@@ -145,5 +145,20 @@ namespace EquipmentInventoryTracker.Controllers
 
             return Ok(equipmentInCategory);
         }
+
+
+        [HttpPut("{id}/location")]
+        public async Task<IActionResult> UpdateLocation(int id, [FromBody] LocationDto dto)
+        {
+            var equipment = await _context.Equipments.FindAsync(id);
+            if (equipment == null)
+                return NotFound();
+
+            equipment.Latitude = dto.Latitude;
+            equipment.Longitude = dto.Longitude;
+
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
     }
 }

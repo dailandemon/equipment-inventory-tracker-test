@@ -10,6 +10,10 @@ namespace EquipmentInventoryTracker.Dtos
         public string SerialNumber { get; set; } = string.Empty;
         public int CategoryId { get; set; }
 
+
+    }
+    public class LocationDto
+    {
         //optional fields for geolocation
         public double? Latitude { get; set; }
         public double? Longitude { get; set; }  
