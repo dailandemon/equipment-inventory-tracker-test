@@ -11,6 +11,9 @@ namespace EquipmentInventoryTracker.Models
         public string Status { get; set; } = string.Empty;
         public DateTime LastMaintenanceDate { get; set; }
 
+        public double? Latitude { get; set; }
+        public double? Longitude { get; set; }
+
         public int CategoryId { get; set; }
         public required EquipmentCategory Category { get; set; }
     }

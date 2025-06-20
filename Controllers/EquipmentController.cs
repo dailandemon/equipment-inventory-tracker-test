@@ -99,7 +99,7 @@ namespace EquipmentInventoryTracker.Controllers
                 .Include(e => e.Category)
                 .ToListAsync();
         }
-        
+
 
         [HttpGet("status/{status}")]
         public async Task<ActionResult<IEnumerable<Equipment>>> GetByStatus(string status)
@@ -108,6 +108,42 @@ namespace EquipmentInventoryTracker.Controllers
                 .Where(e => e.Status.ToLower() == status.ToLower())
                 .Include(e => e.Category)
                 .ToListAsync();
+        }
+        [HttpGet("search")]
+        public async Task<ActionResult<IEnumerable<Equipment>>> SearchByName([FromQuery] string name)
+        {
+            if (string.IsNullOrWhiteSpace(name) || name.Length <= 4) //min 4 characters for search
+            {
+                return BadRequest("Search term must be at least 4 characters.");
+            }
+
+            var matches = await _context.Equipments
+                .Include(e => e.Category)
+                .Where(e => EF.Functions.Like(e.Name, $"%{name}%"))
+                .ToListAsync();
+
+            return Ok(matches);
+        }
+
+        [HttpGet("search-by-category")]
+        public async Task<ActionResult<IEnumerable<Equipment>>> SearchByCategoryName([FromQuery] string category)
+        {
+            if (string.IsNullOrWhiteSpace(category))
+            {
+                return BadRequest("Category name is required.");
+            }
+
+            var equipmentInCategory = await _context.Equipments
+                .Include(e => e.Category)
+                .Where(e => e.Category.Name.ToLower() == category.ToLower())
+                .ToListAsync();
+
+            if (!equipmentInCategory.Any())
+            {
+                return NotFound($"No equipment found in category '{category}'.");
+            }
+
+            return Ok(equipmentInCategory);
         }
     }
 }

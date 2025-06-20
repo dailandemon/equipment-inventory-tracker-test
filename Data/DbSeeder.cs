@@ -14,7 +14,8 @@ namespace EquipmentInventoryTracker.Data
                     new() { Name = "Military Supplies" },
                     new() { Name = "Communications" },
                     new() { Name = "Medical" },
-                    new() { Name = "Computers" }
+                    new() { Name = "Computers" },
+                    new() { Name = "Missiles" }
                 };
 
                 context.EquipmentCategories.AddRange(categories);
@@ -92,6 +93,57 @@ namespace EquipmentInventoryTracker.Data
                         CategoryId = categories[4].Id,
                         Category = categories[4]
                     },
+                    // Missiles
+                    new()
+                    {
+                        Name = "AGM-114 Hellfire",
+                        Status = "Deployed",
+                        SerialNumber = "MISS-HF-001",
+                        CategoryId = categories[5].Id,
+                        Category = categories[5],
+                        Latitude = 25.7617,     // Miami
+                        Longitude = -80.1918
+                    },
+                    new()
+                    {
+                        Name = "Tomahawk Block V",
+                        Status = "Ready",
+                        SerialNumber = "MISS-TOMA-002",
+                        CategoryId = categories[5].Id,
+                        Category = categories[5],
+                        Latitude = 28.5383,     // Orlando
+                        Longitude = -81.3792
+                    },
+                    new()
+                    {
+                        Name = "Patriot PAC-3",
+                        Status = "Testing",
+                        SerialNumber = "MISS-PAT-003",
+                        CategoryId = categories[5].Id,
+                        Category = categories[5],
+                        Latitude = 27.9506,     // Tampa
+                        Longitude = -82.4572
+                    },
+                    new()
+                    {
+                        Name = "Trident II D5",
+                        Status = "Storage",
+                        SerialNumber = "MISS-TRI-004",
+                        CategoryId = categories[5].Id,
+                        Category = categories[5],
+                        Latitude = 30.3322,     // Jacksonville
+                        Longitude = -81.6557
+                    },
+                    new()
+                    {
+                        Name = "JASSM-ER",
+                        Status = "Maintenance",
+                        SerialNumber = "MISS-JASSM-005",
+                        CategoryId = categories[5].Id,
+                        Category = categories[5],
+                        Latitude = 26.6406,     // Fort Myers
+                        Longitude = -81.8723
+                    }
                 };
 
                 context.Equipments.AddRange(equipments);
